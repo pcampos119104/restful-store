@@ -15,7 +15,7 @@ class ItemModel(db.Model):
         return cls.query.filter_by(name=name).first()
 
     @classmethod
-    def find_all(cls) -> List["ItemModel"]:
+    def find_all(cls):
         return cls.query.all()
 
     def save_to_db(self):
