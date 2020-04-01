@@ -1,21 +1,8 @@
 version: '3'
 
 services:
-# mysql:
-#    image: 'mysql'
-
   apirest:
     restart: always
-    command: gunicorn -b 0.0.0.0:8000 app:app
     build: ./api
-    expose:
-      - 8000
-    volumes:
-      - ./api/code:/app
-
-  nginx:
-    build: ./nginx
     ports:
-      - 80:80
-    depends_on:
-      - apirest
+     - "8080:8080"

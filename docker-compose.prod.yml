@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+# db:
+#    image: 'mysql'
+
+  apirest:
+    command: gunicorn -b 0.0.0.0:8000 app:app
+    expose:
+      - 8000
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    depends_on:
+      - apirest

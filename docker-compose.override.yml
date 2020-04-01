@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+# db:
+#    image: 'mysql'
+
+  apirest:
+    command: python app.py
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./api/code:/app
