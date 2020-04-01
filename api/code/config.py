@@ -1,0 +1,11 @@
+import os
+
+ENV = os.getenv("FLASK_ENV")
+DEBUG = ENV == "development"
+
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URI')
+PROPAGATE_EXCEPTIONS = True
+JWT_BLACKLIST_ENABLED = True
+JWT_BLACKLIST_TOKEN_CHECK = ['access', 'refresh']
+SECRET_KEY = os.getenv('SECRET_KEY')

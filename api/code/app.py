@@ -2,27 +2,24 @@ import os
 
 from flask import Flask, jsonify
 from flask_restful import Resource, Api, reqparse
-from flask_jwt_extended import JWTManager # jwt_required
 from marshmallow import ValidationError
 
-from ma import ma
+from extensions import db, ma, jwt
+
 from resources.user import UserRegister, User, UserLogin, UserLogout, TokenRefresh
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 from blacklist import BLACKLIST
 
-from db import db
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
-app.config['PROPAGATE_EXCEPTIONS'] = True
-app.config['JWT_BLACKLIST_ENABLED'] = True
-app.config['JWT_BLACKLIST_TOKEN_CHECK'] = ['access', 'refresh']
-app.secret_key = 'pcampos'
+app.config.from_object("config")
 api = Api(app)
 
+
+jwt.init_app(app)# not creating /auth
 db.init_app(app)
+
 @app.before_first_request
 def create_table():
     db.create_all()
@@ -31,7 +28,6 @@ def create_table():
 def handle_marshmallow_validation(err):
     return jsonify(error.messages), 400
 
-jwt = JWTManager(app) # not creating /auth
 
 @jwt.user_claims_loader
 def add_claims_to_jwt(identity):
@@ -62,5 +58,4 @@ api.add_resource(TokenRefresh, '/refresh')
 
 if __name__ == '__main__':
     ma.init_app(app)
-    # app.run(port=5000, debug=True)
     app.run(host='0.0.0.0', debug=True, port=int(os.environ.get('PORT', 8080)))

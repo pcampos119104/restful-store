@@ -1,4 +1,4 @@
-FROM python:3.7-alpine
+FROM python:3.7-slim
 
 WORKDIR /app
 
@@ -6,10 +6,8 @@ RUN pip install pipenv
 COPY Pipfile* ./
 RUN pipenv install --system 
 
-COPY . .
+COPY ./code .
 
-CMD ["python","code/app.py"]
+CMD ["python","app.py"]
+# CMD exec gunicorn -b 0.0.0.0:8080 --workers 1 --threads 8 app:app
 
-# For Cloud Run
-# RUN pip install gunicorn
-# CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 app:app
