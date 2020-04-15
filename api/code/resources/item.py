@@ -1,5 +1,5 @@
 from models.item import ItemModel
-from flask import request
+from flask import request, current_app
 from flask_restful import Resource, reqparse
 from flask_jwt_extended import (
     jwt_required,
@@ -34,7 +34,8 @@ class Item(Resource):
 
         try:
             item.save_to_db()
-        except:
+        except Exception as e:
+            current_app.logger.debug(e)
             return {'message': 'Server problem'}, 500
 
         return item_schema.dump(item), 201

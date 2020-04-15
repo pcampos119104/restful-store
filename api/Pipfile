@@ -14,7 +14,9 @@ Werkzeug = "*"
 flask-marshmallow = "*"
 marshmallow-SQLAlchemy = "*"
 gunicorn = "*"
-pymysql = {extras = ["rsa"],version = "*"}
+passlib = "*"
+pymysql = "*"
+cryptography = "*"
 
 [requires]
 python_version = "3.7"

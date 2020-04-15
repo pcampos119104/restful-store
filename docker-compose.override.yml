@@ -12,7 +12,7 @@ services:
       - apirest
     volumes:
       - ./db:/var/lib/mysql 
-
+        
   apirest:
     command: flask run --host=0.0.0.0
     env_file:
