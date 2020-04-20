@@ -9,6 +9,7 @@ from extensions import db, ma, jwt
 from resources.user import UserRegister, User, UserLogin, UserLogout, TokenRefresh
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
+from resources.hello import Hello 
 from blacklist import BLACKLIST
 
 
@@ -46,6 +47,7 @@ def expire_token_callback():
         'error': 'token_expired'
     }), 401
 
+api.add_resource(Hello, '/')
 api.add_resource(Item, '/item/<string:name>')
 api.add_resource(Store, '/store/<string:name>')
 api.add_resource(ItemList, '/items')
