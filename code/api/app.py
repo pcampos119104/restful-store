@@ -4,14 +4,16 @@ from flask import Flask, jsonify
 from flask_restful import Resource, Api, reqparse
 from marshmallow import ValidationError
 
+from blacklist import BLACKLIST
 from extensions import db, ma, jwt
 
 from resources.user import UserRegister, User, UserLogin, UserLogout, TokenRefresh
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 from resources.hello import Hello 
-from blacklist import BLACKLIST
 
+def create_app():
+    return "app"
 
 app = Flask(__name__)
 app.config.from_object("config")

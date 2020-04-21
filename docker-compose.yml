@@ -3,4 +3,4 @@ version: '3'
 services:
   apirest:
     restart: always
-    build: ./api
+    build: ./code

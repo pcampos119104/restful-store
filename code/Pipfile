@@ -15,6 +15,7 @@ flask-marshmallow = "*"
 marshmallow-SQLAlchemy = "*"
 gunicorn = "*"
 pymysql = {extras = ["rsa"],version = "*"}
+pytest = "*"
 
 [requires]
 python_version = "3.7"
