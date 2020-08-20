@@ -1,7 +1,7 @@
 
 # Udemy Flask
 
-Fork from my own project, the goal it's to build a more advanced a api rest
+Fork from my own project, the goal it's to build a more advanced rest api
 
 ## Getting Started
 
